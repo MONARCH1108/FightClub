@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight Club</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        
+        body {
+            background-color: #0d0d0d;
+            color: #ff0000;
+            font-family: 'Bebas Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
+        }
+
+        .heading {
+            border: 3px solid red;
+            border-radius: 20px;
+            text-align: center;
+            padding: 20px;
+            font-size: 3em;
+            letter-spacing: 4px;
+            text-shadow: 5px 5px black;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 3px solid red;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        th:hover, td:hover {
+            background-color: rgba(255, 0, 0, 0.5);
+            transition: 0.3s;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        img:hover {
+            transform: scale(1.2);
+            filter: brightness(1.3);
+        }
+
+        .quote {
+            text-align: center;
+            font-size: 2.5em;
+            font-style: italic;
+            border: 3px solid red;
+            border-radius: 20px;
+            margin: 30px;
+            padding: 30px;
+            background: rgba(255, 0, 0, 0.2);
+            animation: glitch 1.5s infinite alternate;
+        }
+        
+        @keyframes glitch {
+            0% { text-shadow: 6px 6px black; }
+            100% { text-shadow: -6px -6px black; }
+        }
+
+        .video {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px;
+            border: 3px solid red;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 1.5em;
+        }
+        
+        .footer a {
+            color: red;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h1><b><u>FIGHT CLUB</u></b></h1>
+    </div>
+    
+    <div class="table">
+        <table>
+            <tr>
+                <th>Mike Tyson</th>
+                <th>Muhammad Ali</th>
+                <th>Conor McGregor</th>
+                <th>Khabib Nurmagomedov</th>
+            </tr>
+            <tr>
+                <td><img src="https://i.pinimg.com/736x/d9/0a/05/d90a0595a0ca70bbf39dfea62cb05449.jpg" alt="Mike Tyson"></td>
+                <td><img src="https://i.pinimg.com/736x/77/53/24/775324362b1317d2b6ddbe5fbf63c9ed.jpg" alt="Muhammad Ali"></td>
+                <td><img src="https://i.pinimg.com/736x/33/be/6f/33be6faa2888b95eff59739aa25cfc73.jpg" alt="Conor McGregor"></td>
+                <td><img src="https://i.pinimg.com/474x/96/76/7c/96767c4efd97450a35eae4c36eb7d5db.jpg" alt="Khabib Nurmagomedov"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="quote">
+        <p>"You must expect great things of yourself before you can do them." - Muhammad Ali</p>
+    </div>
+    
+    <div class="video">
+        <video autoplay muted loop controls>
+            <source src="ezyZip.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <div class="table">
+        <table>
+            <tr>
+                <th>Floyd Mayweather Jr.</th>
+                <th>Anderson Silva</th>
+                <th>Manny Pacquiao</th>
+                <th>Georges St-Pierre</th>
+            </tr>
+            <tr>
+                <td><img src="https://i.pinimg.com/474x/24/86/8f/24868fced77e6cea8360f3292879144f.jpg" alt="Floyd Mayweather Jr."></td>
+                <td><img src="https://i.pinimg.com/474x/4f/33/4e/4f334e030a69ff95f2dce2881b31da4e.jpg" alt="Anderson Silva"></td>
+                <td><img src="https://i.pinimg.com/736x/79/9a/b1/799ab1c1fe8027260f3235cde3822183.jpg" alt="Manny Pacquiao"></td>
+                <td><img src="https://i.pinimg.com/736x/ee/17/69/ee17697d93df6688153ab18f023eb21d.jpg" alt="Georges St-Pierre"></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="footer">
+        <p>&copy; 2025 Fight Club. 
+            <br>
+            Designed by <b>E.Y.S.V.S ABHAY</b>.
+            <br>
+            Connect with me on <a href="https://www.linkedin.com/in/e-y-s-v-s-abhay/">LinkedIn</a>
+        </p>
+    </div>
+</body>
+</html>
