@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Tyson - The Legend</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        .gallery-section {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 30px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.9);
+            margin: 40px 20px;
+            border: 8px solid #ff0000;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.7),
+                        inset 0 0 30px rgba(255, 0, 0, 0.5);
+        }
+        body{
+            background-color: #0d0d0d;
+            color: #ff0000;
+            font-family: 'Bebas Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .gallery-frame {
+            flex: 0 0 auto;
+            width: 350px;
+            border: 6px solid #ff0000;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+        }
+        .gallery-img {
+            height: 500px;
+            width: 100%;
+            object-fit: cover;
+            border: 4px solid #ff0000;
+            transition: all 0.3s ease;
+            filter: contrast(120%) grayscale(50%);
+        }
+        .gallery-frame:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.8);
+        }
+        .gallery-frame:hover .gallery-img {
+            filter: contrast(130%) grayscale(0%);
+        }
+        /* Add custom scrollbar styling */
+        .gallery-section::-webkit-scrollbar {
+            height: 12px;
+        }
+        .gallery-section::-webkit-scrollbar-track {
+            background: rgba(255, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .gallery-section::-webkit-scrollbar-thumb {
+            background: #ff0000;
+            border-radius: 10px;
+        }
+        .bio-section {
+            background: rgba(0, 0, 0, 0.9);
+            margin: 40px 20px;
+            padding: 40px;
+            border: 8px solid #ff0000;
+            font-size: 1.2em;
+            line-height: 1.6;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.7),
+                        inset 0 0 30px rgba(255, 0, 0, 0.5);
+            clip-path: polygon(2% 0, 98% 0, 100% 98%, 0 100%);
+        }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .bio-item {
+            border: 4px solid #ff0000;
+            padding: 25px;
+            background: rgba(255, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            transform: skew(-1deg);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+        }
+
+        .bio-item:hover {
+            transform: scale(1.03) skew(-2deg);
+            background: rgba(255, 0, 0, 0.15);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+        }
+
+        .bio-item h3 {
+            text-shadow: 3px 3px black, -2px -2px #500;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .fights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.9);
+            margin: 40px 20px;
+            border: 8px solid #ff0000;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.7),
+                        inset 0 0 30px rgba(255, 0, 0, 0.5);
+            clip-path: polygon(2% 2%, 98% 0, 100% 98%, 0 100%);
+        }
+
+        .fight-video {
+            width: 100%;
+            height: 300px;
+            border: 4px solid #ff0000;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+        }
+
+        .fight-video:hover {
+            transform: scale(1.02) rotate(-1deg);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.8);
+            border-color: #ff3333;
+        }
+
+        .section-header {
+            text-align: center;
+            font-size: 4em;
+            margin: 60px 0;
+            text-shadow: 5px 5px black, -3px -3px #500;
+            letter-spacing: 8px;
+            animation: flicker 3s infinite alternate;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Enhanced hero section */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(40%) contrast(120%);
+        }
+
+        .heading {
+            position: relative;
+            z-index: 2;
+            border: 8px solid #ff0000;
+            border-radius: 0;
+            text-align: center;
+            padding: 40px;
+            font-size: 6em;
+            letter-spacing: 12px;
+            text-shadow: 5px 5px black, -5px -5px #500;
+            animation: flicker 2s infinite alternate;
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.7),
+                        inset 0 0 30px rgba(255, 0, 0, 0.5);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+
+        .hero-section .heading h3 {
+            font-size: 0.4em;
+            margin-top: 20px;
+            letter-spacing: 6px;
+            color: #ff3333;
+        }
+
+        /* Quote frames styling */
+        .boxer-quotes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.9);
+            margin: 40px 20px;
+        }
+
+        .quote-frame {
+            position: relative;
+            border: 6px solid #ff0000;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            transition: all 0.4s ease;
+            transform: skew(-2deg);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.5);
+        }
+
+        .quote-frame img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border: 4px solid #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .quote-frame .quote-text {
+            color: #ffffff;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 15px;
+            margin: 0;
+        }
+
+        .quote-frame:hover {
+            transform: translateY(-15px) scale(1.05) skew(-3deg);
+            box-shadow: 0 0 70px rgba(255, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="Mike Tyson： I wanna Eat his children.mp4" type="video/mp4">
+        </video>
+        <div class="heading">
+            <h1>IRON MIKE TYSON</h1>
+            <h3>The Baddest Man on the Planet</h3>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <h2 class="section-header">PHOTO GALLERY</h2>
+    <div class="gallery-section">
+        <div class="gallery-frame">
+            <img class="gallery-img" src="https://i.pinimg.com/736x/d9/0a/05/d90a0595a0ca70bbf39dfea62cb05449.jpg" alt="Mike Tyson">
+        </div>
+        <div class="gallery-frame">
+            <img class="gallery-img" src="https://i.pinimg.com/736x/fd/56/6a/fd566a715a11351f3d20168490643ab9.jpg" alt="Mike Tyson Fighting">
+        </div>
+        <div class="gallery-frame">
+            <img class="gallery-img" src="https://i.pinimg.com/736x/cf/5f/fd/cf5ffd6fa72eafbcf667f499063d2750.jpg" alt="Young Mike Tyson">
+        </div>
+        <div class="gallery-frame">
+            <img class="gallery-img" src="https://i.pinimg.com/736x/d5/08/ec/d508ec7eae5c8015d2415f96f4e016a2.jpg" alt="Mike Tyson Champion">
+        </div>
+        <div class="gallery-frame">
+            <img class="gallery-img" src="https://i.pinimg.com/736x/02/51/52/025152db517930a8b20a0f1ff0ec2779.jpg" alt="Mike Tyson Champion">
+        </div>
+        <div class="gallery-frame">
+            <img class="gallery-img" src="https://i.pinimg.com/736x/39/30/26/393026fa2cb484186e04b7dd03515683.jpg" alt="Mike Tyson Champion">
+        </div>
+        <div class="gallery-frame">
+            <img class="gallery-img" src="https://i.pinimg.com/736x/65/07/cb/6507cb58ba3b1c35f7c73d0a5375c50c.jpg" alt="Mike Tyson Champion">
+        </div>
+    </div>
+
+    <!-- Bio Section -->
+    <h2 class="section-header">THE IRON MIKE STORY</h2>
+    <div class="bio-section">
+        <div class="bio-grid">
+            <div class="bio-item">
+                <h3>PERSONAL LIFE</h3>
+                <p>Marriages: Three</p>
+                <p>Children: Seven</p>
+                <p>Mike Tyson has been married three times: to Robin Givens (1988–1989), Monica Turner (1997–2003), and currently to Lakiha "Kiki" Spicer since 2009. He has seven children: Mikey Lorna, Rayna, Amir, Miguel, Milan, Morocco, and the late Exodus.</p>
+            </div>
+            <div class="bio-item">
+                <h3>RECENT ACTIVITIES</h3>
+                <p>Latest Fight: November 15, 2024</p>
+                <p>Opponent: Jake Paul</p>
+                <p>Outcome: Unanimous Decision Loss</p>
+                <p>At 58, Tyson returned to the ring to face Jake Paul at AT&T Stadium in Arlington, Texas. Despite a valiant effort, he lost by unanimous decision. The event was streamed globally, attracting 65 million concurrent viewers.</p>
+            </div>
+            <div class="bio-item">
+                <h3>HEALTH</h3>
+                <p>Condition: Healthy</p>
+                <p>Recent Concerns: False Parkinson's Disease Claims</p>
+                <p>In February 2025, Jake Paul erroneously claimed Tyson had Parkinson's disease, which Tyson's team promptly refuted, affirming his good health. Paul later retracted his statement, acknowledging his mistake.</p>
+            </div>
+            <div class="bio-item">
+                <h3>BUSINESS VENTURES</h3>
+                <p>Tyson Ranch: Cannabis Company</p>
+                <p>Other Endeavors: Podcast Host, Author</p>
+                <p>Beyond boxing, Tyson has established "Tyson Ranch," a cannabis company, and hosts the podcast "Hotboxin' with Mike Tyson." He has also authored memoirs, including "Undisputed Truth" and "Iron Ambition."</p>
+            </div>
+            <div class="bio-item">
+                <h3>MEDIA APPEARANCES</h3>
+                <p>Film: "The Hangover" Series</p>
+                <p>Television: "Mike Tyson Mysteries"</p>
+                <p>Tyson has made notable appearances in films like "The Hangover" series and starred in the animated television show "Mike Tyson Mysteries," showcasing his versatility beyond the boxing ring.</p>
+            </div>
+            <div class="bio-item">
+                <h3>TRAINING AND FIGHTING STYLE</h3>
+                <p>Signature Move: Peek-a-Boo Style</p>
+                <p>Trainer: Cus D'Amato</p>
+                <p>Tyson mastered the peek-a-boo fighting style under the guidance of Cus D'Amato, emphasizing head movement, explosive counterpunching, and relentless aggression.</p>
+            </div>
+            <div class="bio-item">
+                <h3>CONTROVERSIES</h3>
+                <p>1992 Conviction: Served 3 Years in Prison</p>
+                <p>1997 Ear-Biting Incident: Disqualified vs. Evander Holyfield</p>
+                <p>Tyson's career was marked by legal issues, including a prison sentence and the infamous 1997 disqualification for biting Evander Holyfield's ear during their rematch.</p>
+            </div>
+            <div class="bio-item">
+                <h3>PHILANTHROPY</h3>
+                <p>Charities: Mike Tyson Cares Foundation</p>
+                <p>Focus: Helping Children in Need</p>
+                <p>Tyson founded the Mike Tyson Cares Foundation, which provides support to underprivileged children, including shelter, education, and healthcare.</p>
+            </div>
+            <div class="bio-item">
+                <h3>NET WORTH</h3>
+                <p>Estimated Wealth: $10 Million (2025)</p>
+                <p>Past Financial Issues: Bankruptcy in 2003</p>
+                <p>Despite earning over $400 million during his career, Tyson declared bankruptcy in 2003 but later rebuilt his wealth through media, cannabis ventures, and business deals.</p>
+            </div>
+            <div class="bio-item">
+                <h3>SPIRITUAL JOURNEY</h3>
+                <p>Conversion: Islam</p>
+                <p>Muslim Name: Malik Abdul Aziz</p>
+                <p>Tyson converted to Islam while in prison and has since spoken about his spiritual journey and commitment to self-improvement.</p>
+            </div>
+            <div class="bio-item">
+                <h3>MEMORABLE QUOTES</h3>
+                <p>"Everyone has a plan until they get punched in the mouth."</p>
+                <p>"I'm the best ever. I'm the most brutal and vicious, and most ruthless champion there's ever been."</p>
+                <p>"Discipline is doing what you hate to do but doing it like you love it."</p>
+            </div>
+            <div class="bio-item">
+                <h3>FUTURE PLANS</h3>
+                <p>Upcoming Fight: Undecided</p>
+                <p>Business Expansions: Tyson 2.0 Cannabis Brand</p>
+                <p>Despite being 58, Tyson remains open to future fights and continues expanding his Tyson 2.0 cannabis brand, along with other entrepreneurial ventures.</p>
+            </div>            
+        </div>
+    </div>
+
+    <!-- Quotes Section -->
+    <h2 class="section-header">LEGENDARY QUOTES</h2>
+    <div class="boxer-quotes">
+        <div class="quote-frame">
+            <img src="https://i.pinimg.com/736x/fd/56/6a/fd566a715a11351f3d20168490643ab9.jpg" alt="Mike Tyson">
+            <p class="quote-text">"Everyone has a plan until they get punched in the mouth."</p>
+        </div>
+        <div class="quote-frame">
+            <img src="https://i.pinimg.com/736x/d9/0a/05/d90a0595a0ca70bbf39dfea62cb05449.jpg" alt="Mike Tyson">
+            <p class="quote-text">"I'm the best ever. I'm the most brutal and vicious, and most ruthless champion there's ever been."</p>
+        </div>
+        <div class="quote-frame">
+            <img src="https://i.pinimg.com/736x/65/07/cb/6507cb58ba3b1c35f7c73d0a5375c50c.jpg" alt="Mike Tyson">
+            <p class="quote-text">"Fear is like fire. You can make it work for you: it can warm you in the winter, cook your food when you're hungry, give you light when you are in the dark, and produce energy. Let it go out of control and it can destroy you and everything around you."</p>
+        </div>
+        <div class="quote-frame">
+            <img src="https://i.pinimg.com/736x/ec/a4/f3/eca4f3b55a86875057ad938e0ef985f4.jpg" alt="Mike Tyson">
+            <p class="quote-text">"Discipline is doing what you hate to do but doing it like you love it."</p>
+        </div>
+    </div>
+
+    <!-- Fights Section -->
+    <h2 class="section-header">LEGENDARY FIGHTS</h2>
+    <div class="fights-grid">
+        <iframe class="fight-video" src="https://www.youtube.com/embed/1z9mbQk58B0" frameborder="0" allowfullscreen></iframe>
+        <iframe class="fight-video" src="https://www.youtube.com/embed/p6MYhU97MSY" title="Mike Tyson (USA) vs Evander Holyfield (USA) | KNOCKOUT, BOXING fight, HD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="fight-video" src="https://www.youtube.com/embed/pHXurRbFTss" title="Mike Tyson With A Vicious Knockout of Henry Tillman | HAPPY BIRTHDAY MIKE TYSON" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="fight-video" src="https://www.youtube.com/embed/aJ-AUIkBX_Y" title="Best Knockouts Of Mike Tyson, Boxing HD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="fight-video" src="https://www.youtube.com/embed/M-dkVQIZaV0" title="Next Level Sh*t! When Mike Tyson DESTROYED Cocky Rats For Disrespecting Him HARD!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe class="fight-video" src="https://www.youtube.com/embed/1lLP8NxPr_s" title="Scary Sh*t! Angry Mike Tyson DESTROYED Cocky Fighters For Being Disrespectful!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Fight Club. 
+            <br>
+            <a href="index.html">Back to Hall of Fame</a>
+            <br>
+            Designed by <b>E.Y.S.V.S ABHAY</b>
+        </p>
+    </div>
+</body>
+</html>

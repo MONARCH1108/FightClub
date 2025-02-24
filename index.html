@@ -14,41 +14,84 @@
             margin: 0;
             padding: 0;
             text-transform: uppercase;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://i.pinimg.com/originals/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg');
+            background-blend-mode: color-burn;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.3) contrast(1.2);
         }
 
         .heading {
-            border: 3px solid red;
-            border-radius: 20px;
+            position: relative;
+            z-index: 2;
+            border: 8px solid #ff0000;
+            border-radius: 0;
             text-align: center;
-            padding: 20px;
-            font-size: 3em;
-            letter-spacing: 4px;
-            text-shadow: 5px 5px black;
-            animation: flicker 1.5s infinite alternate;
+            padding: 40px;
+            font-size: 6em;
+            letter-spacing: 12px;
+            text-shadow: 5px 5px black, -5px -5px #500;
+            animation: flicker 2s infinite alternate;
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.7),
+                        inset 0 0 30px rgba(255, 0, 0, 0.5);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
         }
 
         @keyframes flicker {
-            0% { opacity: 1; }
-            100% { opacity: 0.8; }
+            0% { opacity: 1; text-shadow: 5px 5px black, -5px -5px #500; }
+            25% { opacity: 0.8; }
+            50% { text-shadow: 8px 8px #500, -8px -8px black; opacity: 0.9; }
+            75% { opacity: 0.7; }
+            100% { opacity: 1; text-shadow: -5px -5px black, 5px 5px #500; }
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
+            margin: 60px auto;
+            border-collapse: separate;
+            border-spacing: 15px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 0;
+            transform: skew(-2deg);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
         }
         
         th, td {
-            border: 3px solid red;
+            border: 4px solid #ff0000;
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             position: relative;
             overflow: hidden;
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+            transition: all 0.4s ease;
         }
         
         th:hover, td:hover {
-            background-color: rgba(255, 0, 0, 0.5);
-            transition: 0.3s;
+            background-color: rgba(255, 0, 0, 0.15);
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
         }
 
         img {
@@ -69,17 +112,13 @@
             text-align: center;
             font-size: 2.5em;
             font-style: italic;
-            border: 3px solid red;
+            border: 5px solid red;
             border-radius: 20px;
-            margin: 30px;
-            padding: 30px;
-            background: rgba(255, 0, 0, 0.2);
-            animation: glitch 1.5s infinite alternate;
-        }
-        
-        @keyframes glitch {
-            0% { text-shadow: 6px 6px black; }
-            100% { text-shadow: -6px -6px black; }
+            margin: 50px auto;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            max-width: 80%;
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.3);
         }
 
         .video {
@@ -100,25 +139,123 @@
 
         .footer {
             text-align: center;
-            margin-top: 40px;
-            font-size: 1.5em;
+            margin-top: 60px;
+            padding: 40px;
+            font-size: 1.8em;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 4px solid #ff0000;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
         }
         
         .footer a {
-            color: red;
+            color: #ff0000;
             text-decoration: none;
+            position: relative;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
         }
         
         .footer a:hover {
-            text-decoration: underline;
+            color: #ffffff;
+            background: #ff0000;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+        }
+
+        .boxer-quotes {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 20px;
+        }
+
+        .quote-frame {
+            flex: 1;
+            min-width: 300px;
+            border: 4px solid #ff0000;
+            border-radius: 0;
+            padding: 30px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.4);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+
+        .quote-frame:hover {
+            transform: translateY(-15px) scale(1.05);
+            background: rgba(255, 0, 0, 0.15);
+            box-shadow: 0 0 60px rgba(255, 0, 0, 0.6);
+        }
+
+        .quote-frame img {
+            width: 200px;
+            height: 200px;
+            border-radius: 0;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            border: 3px solid #ff0000;
+            filter: grayscale(50%) contrast(120%);
+            transition: all 0.4s ease;
+        }
+
+        .quote-frame img:hover {
+            filter: grayscale(0%) contrast(130%);
+            transform: scale(1.1) rotate(-3deg);
+        }
+
+        .boxer-name {
+            font-size: 2.2em;
+            margin: 15px 0;
+            text-shadow: 4px 4px black;
+            letter-spacing: 3px;
+        }
+
+        .quote-text {
+            font-size: 1.4em;
+            font-style: italic;
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #ff3333;
+        }
+        .section-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px;
+            border: 3px solid red;
+            border-radius: 20px;
+            overflow: hidden;
         }
     </style>
 </head>
 <body>
-    <div class="heading">
-        <h1><b><u>FIGHT CLUB</u></b></h1>
+
+    <div class="hero-section">
+        <video class="hero-video" autoplay muted loop>
+            <source src="ezyZip.mp4" type="video/mp4">
+        </video>
+        <div class="heading">
+            <h1><b><u>FIGHT CLUB</u></b></h1>
+            <h5><a href="#hall-of-fame" style="color: #ff0000; text-decoration: none;"><u>Hall of Fame</u></a></h5>
+        </div>
     </div>
     
+
+    <div class="quote">
+        <p>"You must expect great things of yourself before you can do them." - Muhammad Ali</p>
+    </div>
+    
+    <div class="video">
+        <video autoplay muted loop>
+            <source src="video_2.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="section-title">
+        <h2 id="hall-of-fame"><i><u>Hall of Fame</u></i></h2>
+    </div>
     <div class="table">
         <table>
             <tr>
@@ -133,17 +270,13 @@
                 <td><img src="https://i.pinimg.com/736x/33/be/6f/33be6faa2888b95eff59739aa25cfc73.jpg" alt="Conor McGregor"></td>
                 <td><img src="https://i.pinimg.com/474x/96/76/7c/96767c4efd97450a35eae4c36eb7d5db.jpg" alt="Khabib Nurmagomedov"></td>
             </tr>
+            <tr>
+                <th><a style="color: red;" href="mike_tyson.html">See More</a></th>
+                <th><a style="color: red;" href="">See More</a></th>
+                <th><a style="color: red;" href="">See More</a></th>
+                <th><a style="color: red;" href="">See More</a></th>
+            </tr>
         </table>
-    </div>
-
-    <div class="quote">
-        <p>"You must expect great things of yourself before you can do them." - Muhammad Ali</p>
-    </div>
-    
-    <div class="video">
-        <video autoplay muted loop controls>
-            <source src="ezyZip.mp4" type="video/mp4">
-        </video>
     </div>
     
     <div class="table">
@@ -160,9 +293,33 @@
                 <td><img src="https://i.pinimg.com/736x/79/9a/b1/799ab1c1fe8027260f3235cde3822183.jpg" alt="Manny Pacquiao"></td>
                 <td><img src="https://i.pinimg.com/736x/ee/17/69/ee17697d93df6688153ab18f023eb21d.jpg" alt="Georges St-Pierre"></td>
             </tr>
+            <tr>
+                <th><a style="color: red;" href="">See More</a></th>
+                <th><a style="color: red;" href="">See More</a></th>
+                <th><a style="color: red;" href="">See More</a></th>
+                <th><a style="color: red;" href="">See More</a></th>
+            </tr>
         </table>
     </div>
     
+    <div class="boxer-quotes">
+        <div class="quote-frame">
+            <img src="https://i.pinimg.com/736x/c5/e8/5f/c5e85f0f44097676049a182db9c0e98d.jpg" alt="Muhammad Ali">
+            <p class="boxer-name">Muhammad Ali</p>
+            <p class="quote-text">"Float like a butterfly, sting like a bee."</p>
+        </div>
+        <div class="quote-frame">
+            <img src="https://i.pinimg.com/736x/fd/56/6a/fd566a715a11351f3d20168490643ab9.jpg" alt="Mike Tyson">
+            <p class="boxer-name">Mike Tyson</p>
+            <p class="quote-text">"Everyone has a plan until they get punched in the mouth."</p>
+        </div>
+        <div class="quote-frame">
+            <img src="https://i.pinimg.com/736x/11/ab/44/11ab445f6f6d057c076b5560bc85a02a.jpg" alt="Floyd Mayweather">
+            <p class="boxer-name">Floyd Mayweather</p>
+            <p class="quote-text">"I'm the best ever. I'm the most brutal and vicious, and most ruthless champion there's ever been."</p>
+        </div>
+    </div>
+
     <div class="footer">
         <p>&copy; 2025 Fight Club. 
             <br>
